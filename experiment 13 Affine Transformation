@@ -1,0 +1,16 @@
+
+import cv2
+import numpy as np
+
+img = cv2.imread(r"C:\Users\SAIL\OneDrive\Pictures\images (1).jpg")
+h, w = img.shape[:2]
+
+p1 = np.float32([[0, 0], [w, 0], [0, h]])
+p2 = np.float32([[50, 50], [w-50, 0], [100, h-50]])
+
+m = cv2.getAffineTransform(p1, p2)
+out = cv2.warpAffine(img, m, (w, h))
+
+cv2.imshow("Affine Transformation", out)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
