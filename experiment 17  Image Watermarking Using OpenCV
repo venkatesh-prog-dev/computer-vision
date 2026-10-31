@@ -1,0 +1,15 @@
+
+import cv2
+
+img = cv2.imread(r"C:\Users\SAIL\OneDrive\Pictures\images (1).jpg")
+
+watermark = img.copy()
+cv2.putText(watermark, "WATERMARK", (50, 50),
+            cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+
+out = cv2.addWeighted(img, 0.7, watermark, 0.3, 0)
+
+cv2.imshow("Watermarked Image", out)
+cv2.imwrite("watermarked.jpg", out)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
