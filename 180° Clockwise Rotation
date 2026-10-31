@@ -1,0 +1,9 @@
+
+import cv2
+
+img = cv2.imread(r"C:\Users\SAIL\OneDrive\Pictures\images (1).jpg")
+rot = cv2.rotate(img, cv2.ROTATE_180)
+
+cv2.imshow("180 Degree Rotation", rot)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
