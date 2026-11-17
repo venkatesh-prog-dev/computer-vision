@@ -1,0 +1,11 @@
+import cv2
+
+img = cv2.imread(r"C:\Users\SAIL\OneDrive\Pictures\images (1).jpg")
+
+if img is None:
+    print("Image not found")
+else:
+    cv2.imshow("Watch Image", img)
+    print("Image loaded successfully")
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
