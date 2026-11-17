@@ -1,0 +1,19 @@
+import cv2
+
+img = cv2.imread(r"C:\Users\SAIL\OneDrive\Pictures\images (1).jpg")
+
+if img is None:
+    print("Image not found")
+else:
+    roi = img[50:200, 50:200]
+    crop = roi.copy()
+
+    h, w = crop.shape[:2]
+
+    img[0:h, 0:w] = crop
+
+    cv2.imshow("Original and Pasted Image", img)
+    cv2.imshow("Cropped ROI", crop)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
