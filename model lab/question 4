@@ -1,0 +1,47 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+image_path = r"C:\Users\SAIL\OneDrive\Pictures\images (1).jpg"
+
+img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+
+if img is None:
+    print("Image not found!")
+    exit()
+
+# Sobel X
+sobel_x = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=3)
+
+# Sobel Y
+sobel_y = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=3)
+
+# Convert to absolute values
+abs_x = cv2.convertScaleAbs(sobel_x)
+abs_y = cv2.convertScaleAbs(sobel_y)
+
+# Combine gradients
+edge_map = cv2.addWeighted(abs_x, 0.5, abs_y, 0.5, 0)
+
+plt.subplot(2, 2, 1)
+plt.imshow(img, cmap='gray')
+plt.title("Original Image")
+plt.axis("off")
+
+plt.subplot(2, 2, 2)
+plt.imshow(abs_x, cmap='gray')
+plt.title("Sobel X")
+plt.axis("off")
+
+plt.subplot(2, 2, 3)
+plt.imshow(abs_y, cmap='gray')
+plt.title("Sobel Y")
+plt.axis("off")
+
+plt.subplot(2, 2, 4)
+plt.imshow(edge_map, cmap='gray')
+plt.title("Combined Edge Map")
+plt.axis("off")
+
+plt.tight_layout()
+plt.show()
